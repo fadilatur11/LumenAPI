@@ -55,7 +55,20 @@ class todoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = ModelTodo::where('id',$id)->first();
+        $data->activity = $request->input('activity');
+        $data->description = $request->input('description');
+        $data->save();
+        
+        return response('Data berhasil di update');
+    }
+
+    public function delete($id)
+    {
+        $data = ModelTodo::where('id',$id)->first();
+        $data->delete();
+
+        return response('Data berhasil di hapus');
     }
 
     /**
